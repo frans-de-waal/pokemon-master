@@ -1,8 +1,12 @@
 function App() {
   return (
-    <p class="text-4xl text-green-700 p-10">
-      Pokemon Master
-    </p>
+    <div class="bg-blue-dark min-h-screen">
+      <header>
+        <h1 class="text-4xl text-yellow-dark p-10">
+          Pokemon Master
+        </h1>
+      </header>
+    </div>
   );
 }
 

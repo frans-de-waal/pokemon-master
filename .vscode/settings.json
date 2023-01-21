@@ -6,4 +6,10 @@
   },
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "[javascript][javascriptreact][typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+},
 }
