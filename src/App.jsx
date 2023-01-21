@@ -1,6 +1,8 @@
 function App() {
   return (
-    <p class="text-4xl text-green-700 text-center py-20">Hello Tailwind!</p>
+    <p class="text-4xl text-green-700 p-10">
+      Pokemon Master
+    </p>
   );
 }
 
