@@ -31,6 +31,7 @@ export default function TypeLabel(props) {
         rounded
         text-white
         ${bgColors[props.type]}
+        uppercase
       `}
     >
       {props.type}
