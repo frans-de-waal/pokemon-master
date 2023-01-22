@@ -14,7 +14,19 @@ export default function Pokemon(props) {
   }));
 
   return (
-    <div class="flex flex-col mb-6">
+    <div
+      class="
+        flex
+        flex-col
+        p-2
+        mb-3
+        rounded
+        cursor-pointer
+      hover:bg-blue
+      hover:text-yellow-dark
+      "
+      onClick={() => props.onClick()}
+    >
       <h3 class="flex flex-row flex-wrap items-center text-xl">
         <PokeImage id={props.id} size="md" />
         <span class="ml-3">{props.name}</span>

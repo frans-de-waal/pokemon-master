@@ -23,10 +23,11 @@ export default function TypeLabel(props) {
   return (
     <div
       class={`
-        my-2
+        mt-2
         mr-3
-        py-1
-        px-2
+        pt-2
+        pb-1
+        px-3
         text-xs
         rounded
         text-white

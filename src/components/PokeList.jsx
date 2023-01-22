@@ -2,6 +2,8 @@ import {
   createMemo, createSignal, For,
 } from 'solid-js';
 import { gen1 } from '../../assets/pokedex';
+import H2 from './H2.jsx';
+import { add } from './party';
 import Pokemon from './Pokemon.jsx';
 
 export default function PokeList() {
@@ -10,11 +12,11 @@ export default function PokeList() {
   const [search, setSearch] = createSignal('');
 
   const sortedPokedex = createMemo(
-    () => gen1Pokedex().sort(({ name: nameA }, { name: nameB }) => {
-      if (nameA.english < nameB.english) {
+    () => gen1Pokedex().sort(({ id: idA }, { id: idB }) => {
+      if (idA < idB) {
         return -1;
       }
-      if (nameA.english > nameB.english) {
+      if (idA > idB) {
         return 1;
       }
       return 0;
@@ -29,11 +31,27 @@ export default function PokeList() {
   );
 
   return (
-    <div>
-      <input class="mb-10 py-2 px-3 rounded border-2 border-black" value={search()} type="text" onInput={(event) => setSearch(event.target.value)} />
-      <For each={filteredPokedex()}>
-        {({ id, name, types }) => <Pokemon id={id} name={name.english} types={types} />}
-      </For>
-    </div >
+    <section class="flex-auto flex flex-col p-4">
+      <H2>Pokedex</H2>
+      <input
+        class="mb-10 py-2 px-3 rounded border-2 border-black"
+        value={search()}
+        type="text"
+        onInput={(event) => setSearch(event.target.value)}
+        placeholder="Search for a Pokemon..."
+      />
+      <div class="flex-auto h-0 overflow-y-auto">
+        <For each={filteredPokedex()}>
+          {
+            ({ id, name, types }) => <Pokemon
+              onClick={() => add(id)}
+              id={id}
+              name={name.english}
+              types={types}
+            />
+          }
+        </For>
+      </div>
+    </section >
   );
 }
