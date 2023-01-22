@@ -1,5 +1,5 @@
 import Party from './components/Party.jsx';
-import PokeList from './components/PokeList.jsx';
+import Pokedex from './components/Pokedex.jsx';
 import Header from './components/Header.jsx';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <Header />
       <main class="flex-1 flex flex-row items-stretch">
         <Party />
-        <PokeList />
+        <Pokedex />
       </main>
     </div>
   );

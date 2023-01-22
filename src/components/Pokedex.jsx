@@ -6,7 +6,7 @@ import H2 from './H2.jsx';
 import { add } from './party';
 import Pokemon from './Pokemon.jsx';
 
-export default function PokeList() {
+export default function Pokedex() {
   const [gen1Pokedex] = createSignal(gen1);
 
   const [search, setSearch] = createSignal('');
