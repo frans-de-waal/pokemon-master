@@ -5,7 +5,7 @@ import H2 from './H2.jsx';
 
 export default function Party() {
   return (
-    <div class="flex-auto overflow-auto p-4">
+    <div class="flex-1 overflow-auto p-4">
       <H2>Party</H2>
       <For each={party()}>
         {

@@ -1,45 +1,365 @@
-const types = {
-  Bug: 'Bug',
-  Dark: 'Dark',
-  Dragon: 'Dragon',
-  Electric: 'Electric',
-  Fairy: 'Fairy',
-  Fighting: 'Fighting',
-  Fire: 'Fire',
-  Flying: 'Flying',
-  Ghost: 'Ghost',
-  Grass: 'Grass',
-  Ground: 'Ground',
-  Ice: 'Ice',
+const TYPES = {
   Normal: 'Normal',
-  Poison: 'Poison',
-  Psychic: 'Psychic',
-  Rock: 'Rock',
-  Steel: 'Steel',
+  Fire: 'Fire',
   Water: 'Water',
+  Grass: 'Grass',
+  Electric: 'Electric',
+  Ice: 'Ice',
+  Fighting: 'Fighting',
+  Poison: 'Poison',
+  Ground: 'Ground',
+  Flying: 'Flying',
+  Psychic: 'Psychic',
+  Bug: 'Bug',
+  Rock: 'Rock',
+  Ghost: 'Ghost',
+  Dragon: 'Dragon',
+  Dark: 'Dark',
+  Steel: 'Steel',
 };
 
-export default types;
+export default TYPES;
 
-const colors = {
-  Bug: '#A6B91A',
-  Dark: '#705746',
-  Dragon: '#6F35FC',
-  Electric: '#F7D02C',
-  Fairy: '#D685AD',
-  Fighting: '#C22E28',
-  Fire: '#EE8130',
-  Flying: '#A98FF3',
-  Ghost: '#735797',
-  Grass: '#7AC74C',
-  Ground: '#E2BF65',
-  Ice: '#96D9D6',
-  Normal: '#A8A77A',
-  Poison: '#A33EA1',
-  Psychic: '#F95587',
-  Rock: '#B6A136',
-  Steel: '#B7B7CE',
-  Water: '#6390F0',
-};
+const MATCHUPS = {};
 
-export { colors };
+MATCHUPS[TYPES.Normal] = {};
+
+MATCHUPS[TYPES.Normal][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Water] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Grass] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Rock] = 0.5;
+MATCHUPS[TYPES.Normal][TYPES.Ghost] = 0;
+MATCHUPS[TYPES.Normal][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Normal][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Fire] = {};
+
+MATCHUPS[TYPES.Fire][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Fire] = 0.5;
+MATCHUPS[TYPES.Fire][TYPES.Water] = 0.5;
+MATCHUPS[TYPES.Fire][TYPES.Grass] = 2;
+MATCHUPS[TYPES.Fire][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Ice] = 2;
+MATCHUPS[TYPES.Fire][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Bug] = 2;
+MATCHUPS[TYPES.Fire][TYPES.Rock] = 0.5;
+MATCHUPS[TYPES.Fire][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Dragon] = 0.5;
+MATCHUPS[TYPES.Fire][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Fire][TYPES.Steel] = 2;
+
+MATCHUPS[TYPES.Water] = {};
+
+MATCHUPS[TYPES.Water][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Water][TYPES.Fire] = 2;
+MATCHUPS[TYPES.Water][TYPES.Water] = 0.5;
+MATCHUPS[TYPES.Water][TYPES.Grass] = 0.5;
+MATCHUPS[TYPES.Water][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Water][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Water][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Water][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Water][TYPES.Ground] = 2;
+MATCHUPS[TYPES.Water][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Water][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Water][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Water][TYPES.Rock] = 2;
+MATCHUPS[TYPES.Water][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Water][TYPES.Dragon] = 0.5;
+MATCHUPS[TYPES.Water][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Water][TYPES.Steel] = 1;
+
+MATCHUPS[TYPES.Grass] = {};
+
+MATCHUPS[TYPES.Grass][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Grass][TYPES.Fire] = 0.5;
+MATCHUPS[TYPES.Grass][TYPES.Water] = 2;
+MATCHUPS[TYPES.Grass][TYPES.Grass] = 0.5;
+MATCHUPS[TYPES.Grass][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Grass][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Grass][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Grass][TYPES.Poison] = 0.5;
+MATCHUPS[TYPES.Grass][TYPES.Ground] = 2;
+MATCHUPS[TYPES.Grass][TYPES.Flying] = 0.5;
+MATCHUPS[TYPES.Grass][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Grass][TYPES.Bug] = 0.5;
+MATCHUPS[TYPES.Grass][TYPES.Rock] = 2;
+MATCHUPS[TYPES.Grass][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Grass][TYPES.Dragon] = 0.5;
+MATCHUPS[TYPES.Grass][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Grass][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Electric] = {};
+
+MATCHUPS[TYPES.Electric][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Water] = 2;
+MATCHUPS[TYPES.Electric][TYPES.Grass] = 0.5;
+MATCHUPS[TYPES.Electric][TYPES.Electric] = 0.5;
+MATCHUPS[TYPES.Electric][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Ground] = 0;
+MATCHUPS[TYPES.Electric][TYPES.Flying] = 2;
+MATCHUPS[TYPES.Electric][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Rock] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Dragon] = 0.5;
+MATCHUPS[TYPES.Electric][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Electric][TYPES.Steel] = 1;
+
+MATCHUPS[TYPES.Ice] = {};
+
+MATCHUPS[TYPES.Ice][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Fire] = 0.5;
+MATCHUPS[TYPES.Ice][TYPES.Water] = 0.5;
+MATCHUPS[TYPES.Ice][TYPES.Grass] = 2;
+MATCHUPS[TYPES.Ice][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Ice] = 0.5;
+MATCHUPS[TYPES.Ice][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Ground] = 2;
+MATCHUPS[TYPES.Ice][TYPES.Flying] = 2;
+MATCHUPS[TYPES.Ice][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Rock] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Dragon] = 2;
+MATCHUPS[TYPES.Ice][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Ice][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Fighting] = {};
+
+MATCHUPS[TYPES.Fighting][TYPES.Normal] = 2;
+MATCHUPS[TYPES.Fighting][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Fighting][TYPES.Water] = 1;
+MATCHUPS[TYPES.Fighting][TYPES.Grass] = 1;
+MATCHUPS[TYPES.Fighting][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Fighting][TYPES.Ice] = 2;
+MATCHUPS[TYPES.Fighting][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Fighting][TYPES.Poison] = 0.5;
+MATCHUPS[TYPES.Fighting][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Fighting][TYPES.Flying] = 0.5;
+MATCHUPS[TYPES.Fighting][TYPES.Psychic] = 0.5;
+MATCHUPS[TYPES.Fighting][TYPES.Bug] = 0.5;
+MATCHUPS[TYPES.Fighting][TYPES.Rock] = 2;
+MATCHUPS[TYPES.Fighting][TYPES.Ghost] = 0;
+MATCHUPS[TYPES.Fighting][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Fighting][TYPES.Dark] = 2;
+MATCHUPS[TYPES.Fighting][TYPES.Steel] = 2;
+
+MATCHUPS[TYPES.Poison] = {};
+
+MATCHUPS[TYPES.Poison][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Water] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Grass] = 2;
+MATCHUPS[TYPES.Poison][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Poison] = 0.5;
+MATCHUPS[TYPES.Poison][TYPES.Ground] = 0.5;
+MATCHUPS[TYPES.Poison][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Rock] = 0.5;
+MATCHUPS[TYPES.Poison][TYPES.Ghost] = 0.5;
+MATCHUPS[TYPES.Poison][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Poison][TYPES.Steel] = 0;
+
+MATCHUPS[TYPES.Ground] = {};
+
+MATCHUPS[TYPES.Ground][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Fire] = 2;
+MATCHUPS[TYPES.Ground][TYPES.Water] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Grass] = 0.5;
+MATCHUPS[TYPES.Ground][TYPES.Electric] = 2;
+MATCHUPS[TYPES.Ground][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Poison] = 2;
+MATCHUPS[TYPES.Ground][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Flying] = 0;
+MATCHUPS[TYPES.Ground][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Bug] = 0.5;
+MATCHUPS[TYPES.Ground][TYPES.Rock] = 2;
+MATCHUPS[TYPES.Ground][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Ground][TYPES.Steel] = 2;
+
+MATCHUPS[TYPES.Flying] = {};
+
+MATCHUPS[TYPES.Flying][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Water] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Grass] = 2;
+MATCHUPS[TYPES.Flying][TYPES.Electric] = 0.5;
+MATCHUPS[TYPES.Flying][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Fighting] = 2;
+MATCHUPS[TYPES.Flying][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Bug] = 2;
+MATCHUPS[TYPES.Flying][TYPES.Rock] = 0.5;
+MATCHUPS[TYPES.Flying][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Flying][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Psychic] = {};
+
+MATCHUPS[TYPES.Psychic][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Water] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Grass] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Fighting] = 2;
+MATCHUPS[TYPES.Psychic][TYPES.Poison] = 2;
+MATCHUPS[TYPES.Psychic][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Psychic] = 0.5;
+MATCHUPS[TYPES.Psychic][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Rock] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Psychic][TYPES.Dark] = 0;
+MATCHUPS[TYPES.Psychic][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Bug] = {};
+
+MATCHUPS[TYPES.Bug][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Bug][TYPES.Fire] = 0.5;
+MATCHUPS[TYPES.Bug][TYPES.Water] = 1;
+MATCHUPS[TYPES.Bug][TYPES.Grass] = 2;
+MATCHUPS[TYPES.Bug][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Bug][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Bug][TYPES.Fighting] = 0.5;
+MATCHUPS[TYPES.Bug][TYPES.Poison] = 0.5;
+MATCHUPS[TYPES.Bug][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Bug][TYPES.Flying] = 0.5;
+MATCHUPS[TYPES.Bug][TYPES.Psychic] = 2;
+MATCHUPS[TYPES.Bug][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Bug][TYPES.Rock] = 1;
+MATCHUPS[TYPES.Bug][TYPES.Ghost] = 0.5;
+MATCHUPS[TYPES.Bug][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Bug][TYPES.Dark] = 2;
+MATCHUPS[TYPES.Bug][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Rock] = {};
+
+MATCHUPS[TYPES.Rock][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Fire] = 2;
+MATCHUPS[TYPES.Rock][TYPES.Water] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Grass] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Ice] = 2;
+MATCHUPS[TYPES.Rock][TYPES.Fighting] = 0.5;
+MATCHUPS[TYPES.Rock][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Ground] = 0.5;
+MATCHUPS[TYPES.Rock][TYPES.Flying] = 2;
+MATCHUPS[TYPES.Rock][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Bug] = 2;
+MATCHUPS[TYPES.Rock][TYPES.Rock] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Rock][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Ghost] = {};
+
+MATCHUPS[TYPES.Ghost][TYPES.Normal] = 0;
+MATCHUPS[TYPES.Ghost][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Water] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Grass] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Psychic] = 2;
+MATCHUPS[TYPES.Ghost][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Rock] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Ghost] = 2;
+MATCHUPS[TYPES.Ghost][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Ghost][TYPES.Dark] = 0.5;
+MATCHUPS[TYPES.Ghost][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Dragon] = {};
+
+MATCHUPS[TYPES.Dragon][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Water] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Grass] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Rock] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Dragon] = 2;
+MATCHUPS[TYPES.Dragon][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Dragon][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Dark] = {};
+
+MATCHUPS[TYPES.Dark][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Fire] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Water] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Grass] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Ice] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Fighting] = 0.5;
+MATCHUPS[TYPES.Dark][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Psychic] = 2;
+MATCHUPS[TYPES.Dark][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Rock] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Ghost] = 2;
+MATCHUPS[TYPES.Dark][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Dark][TYPES.Dark] = 0.5;
+MATCHUPS[TYPES.Dark][TYPES.Steel] = 0.5;
+
+MATCHUPS[TYPES.Steel] = {};
+
+MATCHUPS[TYPES.Steel][TYPES.Normal] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Fire] = 0.5;
+MATCHUPS[TYPES.Steel][TYPES.Water] = 0.5;
+MATCHUPS[TYPES.Steel][TYPES.Grass] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Electric] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Ice] = 2;
+MATCHUPS[TYPES.Steel][TYPES.Fighting] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Poison] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Ground] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Flying] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Psychic] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Bug] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Rock] = 2;
+MATCHUPS[TYPES.Steel][TYPES.Ghost] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Dragon] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Dark] = 1;
+MATCHUPS[TYPES.Steel][TYPES.Steel] = 0.5;
+
+export { MATCHUPS };

@@ -28,7 +28,6 @@ module.exports = {
         Dark: '#705746',
         Dragon: '#6F35FC',
         Electric: '#F7D02C',
-        Fairy: '#D685AD',
         Fighting: '#C22E28',
         Fire: '#EE8130',
         Flying: '#A98FF3',
