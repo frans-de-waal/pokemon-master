@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'PokemonGb';
-  src: url(/assets/fonts/PokemonGb-RAeo.ttf);
+  font-family: "PokemonGb";
+  src: url(/fonts/PokemonGb-RAeo.ttf);
 }
