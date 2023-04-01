@@ -1,6 +1,6 @@
 # Pokemon Master
 
-A tool to check Pokemon party compisitions.
+A tool to check Pokemon party compositions.
 
 *A hobby project to learn the basics of SolidJS and Tailwind CSS*
 
