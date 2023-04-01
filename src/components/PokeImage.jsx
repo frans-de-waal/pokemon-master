@@ -14,6 +14,6 @@ export default function PokeImage(props) {
   const normalisedId = createMemo(() => `${props.id}`.padStart(3, '0'));
   const imgSrc = createMemo(() => `/assets/${foldersBySize[props.size || 'md']}/${normalisedId()}.png`);
   return (
-    <img class={`${imageSize[props.size || 'md']} object-contain`} src={imgSrc()} />
+    <img class={`${imageSize[props.size || 'md']} object-contain`} src={new URL(imgSrc(), import.meta.url).href} />
   );
 }
