@@ -1,5 +1,9 @@
 # Pokemon Master
 
+A tool to check Pokemon party compisitions.
+
+*A hobby project to learn the basics of SolidJS and Tailwind CSS*
+
 ## Usage
 
 ```bash
